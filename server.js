@@ -9,6 +9,9 @@ require('dotenv').config();
 const users_schema=require('./models/users_schema')
 const products_schema=require('./models/products_schema')
 const users_routes=require('./routes/users_routes')
+const cart=require('./models/cart')
+const cartItems=require('./models/cart_items');
+const products_routes = require('./routes/products_routes');
 
 
 
@@ -33,6 +36,11 @@ users_routes.users_routes_put(app)
 users_routes.users_routes_delete(app)
 users_routes.users_routes_register(app)
 users_routes.users_routes_login(app)
+cart.create_cart(db)
+cartItems.create_cartItems(db)
+products_routes.products_routes_post(app)
+products_routes.products_routes_get(app)
+products_routes.products_routes_delete(app)
 
 
 // app.get('/', (req, res) => {
