@@ -38,22 +38,27 @@ function post_product (req, res) {
    });
    
     })
-    
-    
-   
-  };
+};
 
 
   function delete_product (req, res) {
-    const cart_id = req.body.cart_id;
+    // const cart_id = req.body.cart_id;
     const product_id = req.body.product_id;
+    const token= req.headers.authorization
+    const decoded=jwt.decode (token)
+    db.get('Select * FROM users where username=?',[decoded.username],(err,data)=>
+    {
+   if(err){
+    console.log(err);
+   }
     
-    db.run ('DELETE FROM cartItems where cart_id=? and product_id=?', [cart_id, product_id], (err,data) => {
+    db.run ('DELETE FROM cartItems where product_id=?', [product_id], (err,data) => {
       if (err){
         console.log(err);
       }
      res.send('Product deleted from cart');
     });
+})
   };
 
 
