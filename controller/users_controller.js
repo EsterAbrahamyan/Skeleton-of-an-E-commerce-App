@@ -55,7 +55,8 @@ function registerUser (req, res) {
     let sql = "INSERT INTO users (username,userpassword,userrole) VALUES (?, ?, ?)";
     db.run(sql, [username, hashed_password,"user"], function (err) {
       if (err) {
-        res.send(JSON.stringify({ status: "Error Registering" }));
+        console.log(err);
+       return res.send(JSON.stringify({ status: "Error Registering" }));
       }
       res.send(JSON.stringify({ status: "User Created" }));
     });

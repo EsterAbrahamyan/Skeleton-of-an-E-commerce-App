@@ -1,7 +1,7 @@
 const express = require('express');
 const sqlite3 = require("sqlite3").verbose();
 const CryptoJS = require("crypto-js");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 const app = express();
 const port = 6000;
 app.use(express.json());
