@@ -3,8 +3,8 @@ require('dotenv').config()
 
 
 const SECRET= process.env.SECRET
- function generateAccessToken(username,role){
-    return jwt.sign({username,role}, SECRET, {expiresIn: "36000s" });
+ function generateAccessToken(user_id){
+    return jwt.sign(user_id, SECRET, {expiresIn: "36000s" });
  }
 
 

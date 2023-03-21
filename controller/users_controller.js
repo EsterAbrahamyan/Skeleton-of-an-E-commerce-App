@@ -69,7 +69,7 @@ function registerUser (req, res) {
     const hashed_password = CryptoJS.SHA256(userpassword).toString();
     let sql = "SELECT * from users WHERE username = ?";
     db.get(sql, [username], function (err, row) {
-      let token = jwt_generate.generateAccessToken(username, row.userrole);
+      let token = jwt_generate.generateAccessToken({username,user_id:row.user_id,role:row.userrole});
       if (username == row.username && hashed_password == row.userpassword) {
         res.send(JSON.stringify({ status: "Logged in",jwt:token }));
       } else {
